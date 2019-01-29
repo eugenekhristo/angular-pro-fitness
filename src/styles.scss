@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #ECF2F9 !important;
+}
+
+.wrapper {
+  max-width: 800px;
+  width: 96%;
+  margin: 0 auto;
+}
