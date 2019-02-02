@@ -1,4 +1,11 @@
-<div class="wrapper">
-  {{user$ | async | json}}
-  <router-outlet></router-outlet>
-</div>
+<app-header
+  [user]="user$ | async"
+  (logout)="onLogout()"
+>
+</app-header>
+<app-nav
+  *ngIf="(user$ | async)?.isAuth"
+>
+</app-nav>
+<router-outlet></router-outlet>
+

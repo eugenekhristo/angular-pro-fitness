@@ -1,0 +1,12 @@
+<div class="app-header">
+  <div class="wrapper">
+    <img src="/src/assets/img/logo.svg">
+    <div class="app-header__user-info">
+      <span
+        *ngIf="user?.isAuth"
+        (click)="logoutUser()"
+      >
+      </span>
+    </div>
+  </div>
+</div>
