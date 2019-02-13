@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // model
-import { Meal } from 'src/app/health/shared/services/meals/meals.service';
+import { Meal, MealsService } from 'src/app/health/shared/services/meals/meals.service';
 
 @Component({
   selector: 'app-meal',
@@ -10,12 +11,13 @@ import { Meal } from 'src/app/health/shared/services/meals/meals.service';
 })
 export class MealComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private mealsService: MealsService) { }
 
   ngOnInit() {
   }
 
-  addMeal(meal: Meal): void {
-    console.log(meal);
+  async addMeal(meal: Meal) {
+    await this.mealsService.addMeal(meal);
+    this.router.navigate(['meals']);
   }
 }

@@ -20,14 +20,10 @@ export class MealFormComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
+    private fb: FormBuilder
   ) {}
 
-  ngOnInit() {
-    // console.log(this.ingredients);
-  }
+  ngOnInit() {}
 
   get required() {
     return (
@@ -50,7 +46,6 @@ export class MealFormComponent implements OnInit {
       this.form.get('name').markAsTouched();
     } else {
       this.create.emit(this.form.value);
-      this.router.navigate(['../'], { relativeTo: this.route });
     }
   }
 }

@@ -35,4 +35,8 @@ export class MealsService {
   private get uid() {
     return this.authService.currentUser.uid;
   }
+
+  addMeal(meal: Meal) {
+    this.db.list(`meals/${this.uid}`).push(meal);
+  }
 }
