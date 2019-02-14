@@ -18,6 +18,7 @@
     <app-list-item
       *ngFor="let meal of meals"
       [item]="meal"
+      (remove)="onRemoveMeal($event)"
     >
     </app-list-item>
   </div>

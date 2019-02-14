@@ -31,4 +31,8 @@ export class MealsComponent implements OnInit, OnDestroy {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
+
+  onRemoveMeal(meal: Meal): void {
+    this.mealsService.removeMeal(meal.key);
+  }
 }

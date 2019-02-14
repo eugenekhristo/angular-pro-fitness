@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 // services
@@ -9,7 +10,12 @@ import { MealsService } from './services/meals/meals.service';
 import { ListItemComponent } from './components/list-item/list-item.component';
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, AngularFireDatabaseModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    AngularFireDatabaseModule
+  ],
   declarations: [ListItemComponent],
   exports: [ListItemComponent]
 })

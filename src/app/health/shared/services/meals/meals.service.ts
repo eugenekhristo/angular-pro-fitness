@@ -9,22 +9,32 @@ import { AuthService } from 'src/app/auth/shared/services/auth/auth.service';
 
 // rxjs
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 export interface Meal {
   name: string;
   ingredients: string[];
   timestamp: number;
-  $key: string;
+  key: string;
   $exists: () => boolean;
 }
 
 @Injectable()
 export class MealsService {
-  meals$: Observable<Meal[]> = this.db
+  // Observable<Meal[]>
+  meals$ = this.db
     .list<Meal>(`meals/${this.uid}`)
-    .valueChanges()
-    .pipe(tap(meals => this.store.set('meals', meals)));
+    .snapshotChanges()
+    .pipe(
+      map(mealsBlob => {
+        return mealsBlob.map(item => {
+          const key = item.key;
+          const payload = item.payload.val();
+          return {key, ...payload};
+        });
+      }),
+      tap(meals => this.store.set('meals', meals))
+    );
 
   constructor(
     private db: AngularFireDatabase,
@@ -38,5 +48,9 @@ export class MealsService {
 
   addMeal(meal: Meal) {
     this.db.list(`meals/${this.uid}`).push(meal);
+  }
+
+  removeMeal(key: string) {
+    this.db.list(`meals/${this.uid}`).remove(key);
   }
 }
